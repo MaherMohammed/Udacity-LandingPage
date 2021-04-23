@@ -24,6 +24,13 @@
  * Start Helper Functions
  * 
 */
+function stylingNavBar(navBar) {
+    navBar.style.listStyleType = "none";
+    navBar.style.margin = '0';
+    navBar.style.padding = '0';
+    navBar.style.overflow = 'hidden';
+    navBar.style.backgroundColor = '#333';
+}
 
 
 
@@ -39,11 +46,7 @@ const sections = document.querySelectorAll('section')
 //start to add children to the nav
 const navBar = document.querySelector('ul')
 //styling the navBar
-navBar.style.listStyleType = "none";
-navBar.style.margin = '0';
-navBar.style.padding = '0';
-navBar.style.overflow = 'hidden';
-navBar.style.backgroundColor = '#333';
+stylingNavBar(navBar);
 
 sections.forEach(function(section,index,secs) {
     navBar.insertAdjacentHTML('beforeend',`<li></li>`);
@@ -60,6 +63,8 @@ listItems.forEach(function (item,index,items) {
     a.style.textAlign = 'center';
     a.style.padding = '14px 16px';
     a.style.textDecoration = 'none';
+    
+    
     a.addEventListener('mouseover',function() {
         a.style.backgroundColor = '#111'; 
     })
