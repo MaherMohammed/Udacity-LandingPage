@@ -17,34 +17,6 @@ function removeActiveFromAll(innerHTMLOfTarget) {
     })
 }
 
-
-function setAttributesForSection(section,num) {
-    section.setAttribute('data-nav' , `Section ${num}`);
-    section.setAttribute('id' , `section${num}`);
-}
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-
-//adding new sections
-const section4 = document.createElement('section');
-const section5 = document.createElement('section');
-
-setAttributesForSection(section4)
-setAttributesForSection(section5)
-
-const mainElement = document.querySelector('main');
-mainElement.appendChild(section4)
-mainElement.appendChild(section5);
-
-
-
-
-
 // build the nav
 //get the sections
 const sections = document.querySelectorAll('section')
@@ -83,12 +55,12 @@ listItems.forEach(function (item,index,items) {
         }
     })
 
-    a.addEventListener('click',function() {
+    a.addEventListener('click',function(event) {
         a.classList.add('active');
         //remove active class from other tabs
         removeActiveFromAll(a.innerHTML);
-
         a.scrollIntoView({behavior:"smooth",block: "start"});
+        
        
     })
     item.appendChild(a);
@@ -97,6 +69,9 @@ listItems.forEach(function (item,index,items) {
 
 
 
+
+
+ 
 // Add class 'active' to section when near top of viewport
 
 
