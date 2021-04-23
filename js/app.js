@@ -70,8 +70,11 @@ listItems.forEach(function (item,index,items) {
 
     a.addEventListener('click',function() {
         a.classList.add('active');
-        console.log(a.classList);
+        a.scrollIntoView({behavior:"smooth",block: "start"});
+       
     })
+
+    //a.addEventListener('scrollTo')
 
     item.appendChild(a);
 })
