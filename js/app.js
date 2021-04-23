@@ -17,6 +17,25 @@ function removeActiveFromAll(innerHTMLOfTarget) {
     })
 }
 
+function removeActiveFromAllSections(sections,targetSection) {
+    sections.forEach(function(sec,index,all) {
+        if (sec.getAttribute('id') !== targetSection) {
+            sections[index].classList.remove('active-section')
+        }
+    })
+} 
+
+
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 // build the nav
 //get the sections
 const sections = document.querySelectorAll('section')
@@ -69,6 +88,16 @@ listItems.forEach(function (item,index,items) {
 
 
 
+document.addEventListener('scroll',function() {
+    //detect the viewed section
+    sections.forEach(function(section,index,all) {
+        if (isInViewport(section)) {
+            section.classList.add('active-section')
+            // console.log(section.getAttribute('id'))
+            removeActiveFromAllSections(sections,section.getAttribute('id'))
+        }
+    })
+})
 
 
  
