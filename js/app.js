@@ -1,29 +1,4 @@
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
 
-/**
- * Define Global Variables
- * 
-*/
-
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
 function stylingNavBar(navBar) {
     navBar.style.listStyleType = "none";
     navBar.style.margin = '0';
@@ -32,13 +7,43 @@ function stylingNavBar(navBar) {
     navBar.style.backgroundColor = '#333';
 }
 
+function removeActiveFromAll(innerHTMLOfTarget) {
+    const anchors = document.querySelectorAll('a');
+    anchors.forEach(function(anchor , index , all) {
+        if (anchor.innerHTML !== innerHTMLOfTarget) {
+            anchor.style.backgroundColor = '#333';
+            anchor.classList.remove('active');
+        } 
+    })
+}
 
+
+function setAttributesForSection(section,num) {
+    section.setAttribute('data-nav' , `Section ${num}`);
+    section.setAttribute('id' , `section${num}`);
+}
 
 /**
  * End Helper Functions
  * Begin Main Functions
  * 
 */
+
+
+//adding new sections
+const section4 = document.createElement('section');
+const section5 = document.createElement('section');
+
+setAttributesForSection(section4)
+setAttributesForSection(section5)
+
+const mainElement = document.querySelector('main');
+mainElement.appendChild(section4)
+mainElement.appendChild(section5);
+
+
+
+
 
 // build the nav
 //get the sections
@@ -64,23 +69,28 @@ listItems.forEach(function (item,index,items) {
     a.style.padding = '14px 16px';
     a.style.textDecoration = 'none';
     
-    
     a.addEventListener('mouseover',function() {
         a.style.backgroundColor = '#111'; 
     })
 
     a.addEventListener('mouseout',function() {
-        a.style.backgroundColor = '#333'
+        //check if it is active or not
+        if (a.classList.contains('active')) {
+            a.style.backgroundColor = '#338AFF';
+        }
+        else{
+            a.style.backgroundColor = '#333'
+        }
     })
 
     a.addEventListener('click',function() {
         a.classList.add('active');
+        //remove active class from other tabs
+        removeActiveFromAll(a.innerHTML);
+
         a.scrollIntoView({behavior:"smooth",block: "start"});
        
     })
-
-    //a.addEventListener('scrollTo')
-
     item.appendChild(a);
 })
 
