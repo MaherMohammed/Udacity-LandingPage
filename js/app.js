@@ -54,6 +54,7 @@ listItems.forEach(function (item,index,items) {
     const a = document.createElement('a');
     a.textContent = `section${index+1}`;
     a.setAttribute('href',`#section${index+1}`);
+    a.setAttribute('id',`tab${index+1}`);
     a.style.display = 'block';
     a.style.color = 'white';
     a.style.textAlign = 'center';
@@ -95,28 +96,15 @@ document.addEventListener('scroll',function() {
             section.classList.add('active-section')
             // console.log(section.getAttribute('id'))
             removeActiveFromAllSections(sections,section.getAttribute('id'))
+            //active tab
+            const tab = document.querySelector(`#tab${index+1}`);
+            tab.classList.add('active')
+            tab.style.backgroundColor = '#338AFF'
+            removeActiveFromAll(tab.innerHTML)
         }
     })
 })
 
 
  
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
 
